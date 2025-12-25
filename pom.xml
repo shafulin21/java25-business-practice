@@ -4,14 +4,64 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
+    <groupId>com.demo</groupId>
     <artifactId>java25-business-practice</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- 父工程必须是pom -->
+    <packaging>pom</packaging>
+
+    <!-- 声明子模块 -->
+    <modules>
+        <module>business-common</module>
+        <module>business-domain</module>
+        <module>business-infrastructure</module>
+        <module>business-application</module>
+        <module>business-adapter</module>
+    </modules>
+
     <properties>
-        <maven.compiler.source>25</maven.compiler.source>
-        <maven.compiler.target>25</maven.compiler.target>
+
+        <!-- JDK25 编译 -->
+        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- 依赖版本统一管理 -->
+        <spring-boot.version>3.4.0</spring-boot.version>
+        <mybatis-spring-boot.version>3.0.4</mybatis-spring-boot.version>
+        <lombok.version>1.18.34</lombok.version>
     </properties>
+
+    <!-- Spring Boot 的依赖版本管理（BOM） -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <!-- 统一插件版本 -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.13.0</version>
+                    <configuration>
+                        <release>${maven.compiler.release}</release>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 </project>
