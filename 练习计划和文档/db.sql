@@ -1,0 +1,18 @@
+-- Week1 商品 CRUD 练习：建库建表（MySQL 8.4.x）
+CREATE DATABASE IF NOT EXISTS practice
+  DEFAULT CHARACTER SET utf8mb4
+  DEFAULT COLLATE utf8mb4_0900_ai_ci;
+
+USE practice;
+
+CREATE TABLE IF NOT EXISTS product (
+  id           BIGINT PRIMARY KEY AUTO_INCREMENT,
+  name         VARCHAR(128) NOT NULL,
+  price        DECIMAL(10,2) NOT NULL,
+  stock        INT NOT NULL,
+  status       TINYINT NOT NULL DEFAULT 1 COMMENT '1=上架 0=下架',
+  created_at   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at   DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_name(name),
+  INDEX idx_status(status)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
