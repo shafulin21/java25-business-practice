@@ -26,9 +26,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public long create(@RequestParam String name,
-                       @RequestParam BigDecimal price,
-                       @RequestParam Integer stock) {
+    public long create(@RequestParam("name") String name,
+                       @RequestParam("price") BigDecimal price,
+                       @RequestParam("stock") Integer stock) {
         Product p = new Product();
         p.setName(name);
         p.setPrice(price);
@@ -39,7 +39,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Product getById(@PathVariable Long id) {
+    public Product getById(@PathVariable("id") Long id) {
         return productService.getById(id);
     }
 }

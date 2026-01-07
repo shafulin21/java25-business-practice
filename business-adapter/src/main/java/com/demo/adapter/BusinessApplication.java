@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2025/12/25 16:50
  */
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.demo")
 @MapperScan("com.demo.infra.mapper")
 public class BusinessApplication {
     public static void main(String[] args) {
