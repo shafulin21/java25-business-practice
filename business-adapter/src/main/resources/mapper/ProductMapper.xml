@@ -18,7 +18,7 @@
         VALUES(#{name}, #{price}, #{stock, #{status})
     </insert>
     
-    <select id="selectByid" resultMap="ProductMap">
+    <select id="selectById" resultMap="ProductMap">
         SELECT * FROM product WHERE id = #{id}
     </select>
 
